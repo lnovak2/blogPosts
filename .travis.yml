@@ -7,3 +7,4 @@ deploy:
   app: intense-spire-88654
   on:
     repo: lnovak2/blogPosts
+before_script: chmod 0777 ./node_modules/.bin/mocha
