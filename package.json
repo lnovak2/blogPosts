@@ -4,7 +4,7 @@
   "description": "API for blogging platform",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha ./test"
   },
   "author": "",
   "license": "ISC",
