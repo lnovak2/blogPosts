@@ -1,13 +1,14 @@
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 
-const {app, closeServer, openServer} = require('../server.js');
+const {app, runServer, closeServer} = require('../server.js');
 
 const should = chai.should();
 
 chai.use(chaiHttp);
 
 describe ('Blog Posts', function(){
+
 	before(function(){
 		return runServer();
 	});
@@ -17,7 +18,7 @@ describe ('Blog Posts', function(){
 
 	it('should list blogs on GET', function(){
 		return chai.request(app)
-		 .get('/blogPosts')
+		 .get('/blog-post')
 		 .then(function(res){
 		 	res.should.have.status(200);
 		 	res.should.be.json;
@@ -35,7 +36,7 @@ describe ('Blog Posts', function(){
 		const newItem = {title: 'The Life of Coffee', content: 'Short story about coffee',
 						author: 'Yours Truly', publishDate: '2017'};
 		return chai.request(app)
-		 .post('/blogPosts')
+		 .post('/blog-post')
 		 .send(newItem)
 		 .then(function(res){
 		 	res.should.have.status(201);
@@ -56,12 +57,12 @@ describe ('Blog Posts', function(){
 		};
 
 		return chai.request(app)
-		.get('/blogPosts')
+		.get('/blog-post')
 		.then(function(res){
 			updateData.id = res.body[0].id;
 
 			return chai.request(app)
-			 .put('/blogPosts')
+			 .put('/blog-post')
 			 .send(updateData)
 		})
 
@@ -75,10 +76,10 @@ describe ('Blog Posts', function(){
 
 	it('should delete blog post on DELETE', function(){
 		return chai.request(app)
-		.get('/blogPosts')
+		.get('/blog-post')
 		.then(function(res){
 			return chai.request(app)
-			 .delete(`/blogPosts/${res.body[0].id}`);
+			 .delete(`/blog-post/${res.body[0].id}`);
 		})
 		.then(function(res){
 			res.should.have.status(204);

@@ -8,8 +8,6 @@ const blogpostRouter = require('./blogpostRouter');
 
 app.use(morgan('common'));
 
-app.use(express.static('public'));
-
 app.use('/blog-post', blogpostRouter);
 
 let server;
