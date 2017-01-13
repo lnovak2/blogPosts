@@ -2,8 +2,9 @@
   "name": "blogposts",
   "version": "1.0.0",
   "description": "API for blogging platform",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
+    "start": "node server.js",
     "test": "mocha ./test"
   },
   "author": "",
